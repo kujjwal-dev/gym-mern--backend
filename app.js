@@ -10,7 +10,7 @@ config({ path: "./config.env"});
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://gym-site-lac-beta.vercel.app');
-    // You can also set other CORS headers such as Access-Control-Allow-Methods, Access-Control-Allow-Headers, etc.
+    
     next();
   });
 
