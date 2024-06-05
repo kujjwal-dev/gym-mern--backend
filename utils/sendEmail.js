@@ -1,18 +1,4 @@
 import nodeMailer from "nodemailer";
-import hbs from "nodemailer-express-handlebars";
-
-const handlebarsOptions = {
-  viewEngine: {
-    extName: ".handlebars",
-    partialsDir: './emailTemplate',
-    defaultLayout: false,
-  },
-  viewPath: './emailTemplate',
-  extName: ".handlebars"
-
-}
-
-transporter.use('compile', hbs(handlebarsOptions));
 
 export const sendEmail = async (options) => {
   const transporter = nodeMailer.createTransport({
@@ -29,8 +15,7 @@ export const sendEmail = async (options) => {
     from: process.env.SMTP_MAIL,
     to: options.email,
     subject: options.subject,
-    template: 'email',
-   context,
+    text: `${options.message} \n\nEmail of User Who Sent The Message: ${options.userEmail}`,
   };
   await transporter.sendMail(mailOptions);
 };
